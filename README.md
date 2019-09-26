@@ -1,3 +1,6 @@
-# My Awesome Book
+# 算法题优选
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+       鉴于自身算法的薄弱，于2019年9月26日，本人开始研究算法习题，希望能有所进步，每2天更新一篇文章讲解算法思路，也希望各位大佬多多交流算法，指出错误~
+
+      习题将包括leetcode, zoj, codeforces 和 codejam中本人做到过的题目。
+
