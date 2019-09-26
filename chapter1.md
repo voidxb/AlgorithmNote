@@ -1,4 +1,4 @@
-# 第一题- leetcode 310.Minimum Height Trees
+# No.1- leetcode 310.Minimum Height Trees
 
 #### **Description**
 
@@ -40,20 +40,20 @@ Output: [3, 4]
 vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
     // if only one node, root is 0
     if (n == 1) return {0};
-    
+
     // build a map marking the connections of nodes
     vector<set<int>> neighbors(n, set<int>({}));
     for (auto e: edges) {
         neighbors[e[0]].insert(e[1]);
         neighbors[e[1]].insert(e[0]);
     }
-    
+
     // pick up all the leaves from the map
     vector<int> leaves;
     for (int i = 0; i < n; i++) {
         if (neighbors[i].size() == 1) leaves.push_back(i);
     }
-    
+
     // remove "leaves" layer by layer, similar to BFS
     while (n > 2) {
         vector<int> newLeaves;
