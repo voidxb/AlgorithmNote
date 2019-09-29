@@ -34,7 +34,7 @@ Output: [3, 4]
   exactly one path. In other words, any connected graph without simple cycles is a tree.”
 * The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
 
-#### Solution
+#### Solution 1 
 
 ```
 vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
