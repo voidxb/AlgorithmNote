@@ -77,10 +77,10 @@ vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
 ```
 vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
     if (n == 1) return {0};
-    
+
     // we use pair to save the space, and the first variable to mark the number,
     // the second to mark the value.Because we just calculate the last number, the method is useful.
-    
+
     vector<pair<int, int>> neighbors(n);
     for (auto e: edges) {
         neighbors[e[0]].first++;
@@ -94,8 +94,8 @@ vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
     }
 
     // we use two pointers(id,ix) and a tag(end), so we don't need another vector to store data
-    // as well as the actions of allocating and adjusting memory.
-    
+    // as well as the actions about allocating and adjusting memory.
+
     int end = leaves.size();
     while (n > 2) {
         n -= end;
