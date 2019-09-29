@@ -34,7 +34,7 @@ Output: [3, 4]
   exactly one path. In other words, any connected graph without simple cycles is a tree.”
 * The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
 
-#### Solution 1 
+#### Solution 1- time O\(n\) 80%, space O\(n\) 32%
 
 ```
 vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
@@ -68,6 +68,44 @@ vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         // update leaves
         leaves = newLeaves;
     }
+    return leaves;
+}
+```
+
+#### Solution 2 - time O\(n\) 95%, space O\(n\) 100%
+
+```
+vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+    if (n == 1) return {0};
+    vector<pair<int, int>> neighbors(n);
+    for (auto e: edges) {
+        neighbors[e[0]].first++;
+        neighbors[e[0]].second += e[1];
+        neighbors[e[1]].first++;
+        neighbors[e[1]].second += e[0];
+    }
+    vector<int> leaves;
+    for (int i = 0; i < n; i++) {
+        if (neighbors[i].first == 1) leaves.push_back(i);
+    }
+    
+    // we use two pointers(id,ix) and a tag(end), so we don't need another vector to store data
+    // as well as the actions of allocating and adjusting memory.
+    int end = leaves.size();
+    while (n > 2) {
+        n -= end;
+        int id = 0, ix = 0;
+        while (ix < end) {
+            int tmp = leaves[ix];
+            int j = neighbors[tmp].second;
+            neighbors[j].first--;
+            neighbors[j].second -= tmp;
+            ix ++;
+            if (neighbors[j].first == 1) leaves[id ++] = j;
+        }
+        end = id;
+    }
+    leaves.erase(leaves.begin() + end, leaves.end());
     return leaves;
 }
 ```
